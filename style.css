@@ -1,0 +1,20 @@
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#taskInput {
+    padding: 10px 15px;
+    width: 70%;
+    margin-right: 10px;
+    border-radius: 4px;
+    border: 1px solid #e0e0e0;
+}
+
+.completed {
+    text-decoration: line-through;
+}
