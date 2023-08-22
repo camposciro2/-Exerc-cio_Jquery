@@ -1,0 +1,99 @@
+CSS (style.css) Detalhado em Texto:
+
+Classe .container:
+
+Esta classe é aplicada ao elemento principal que envolve todo o conteúdo da nossa lista de tarefas.
+
+max-width: 600px; - Determina uma largura máxima para o contêiner. Assim, em telas grandes, o contêiner não esticará demais, mantendo o conteúdo fácil de ler.
+
+margin: 0 auto; - Isso centraliza o contêiner horizontalmente. O auto faz o navegador calcular as margens equitativamente dos dois lados, alinhando o contêiner ao centro.
+
+padding: 20px; - Isso cria um espaço ao redor do conteúdo dentro do contêiner, evitando que o texto ou outros elementos fiquem muito próximos das bordas.
+
+text-align: center; - Garante que o conteúdo interno seja centralizado, alinhando itens como texto e botões no centro do contêiner.
+
+border: 1px solid #e0e0e0; - Adiciona uma borda fina e sutil ao contêiner, o que ajuda a definir o espaço que ele ocupa na página.
+
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); - Adiciona uma sombra sutil abaixo do contêiner, proporcionando um efeito de elevação, o que faz o contêiner se destacar um pouco do resto da página.
+
+ID #taskInput:
+
+Estilos específicos para a caixa de entrada onde os usuários inserem o nome da tarefa.
+
+padding: 10px 15px; - Oferece um espaçamento interno para a caixa de entrada, tornando-a mais confortável para digitação.
+
+width: 70%; - Define a largura do campo de entrada como 70% do contêiner. Isso assegura que haja espaço suficiente para o botão ao lado.
+
+margin-right: 10px; - Insere uma pequena margem à direita da caixa de entrada para que ela não fique colada ao botão ao lado.
+
+border-radius: 4px; - Suaviza os cantos da caixa de entrada, proporcionando uma estética mais amigável e moderna.
+
+border: 1px solid #e0e0e0; - Delineia a caixa de entrada com uma borda sutil, mostrando claramente onde o usuário pode digitar.
+
+Classe .completed:
+
+Estilos para tarefas que foram marcadas como concluídas.
+
+text-decoration: line-through; - Esta propriedade coloca uma linha através do texto, indicando visualmente que a tarefa foi concluída ou "riscada" da lista.
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+script.js Detalhado em Texto:
+
+Esperando a página carregar:
+Antes de executar qualquer script, é importante garantir que toda a página, incluindo os elementos HTML, esteja completamente carregada. O jQuery oferece uma maneira fácil de fazer isso usando $(document).ready(). Quando o DOM (Document Object Model) estiver pronto e todos os elementos estiverem acessíveis, o código dentro dessa função será executado.
+
+Ouvinte de evento de envio para o formulário:
+Após a página ser carregada, configuramos um ouvinte de evento para o envio do formulário usando $("#taskForm").submit(). Isso permite que o código seja executado quando o usuário tenta enviar o formulário.
+
+Evitando a ação padrão do formulário:
+Dentro do ouvinte de evento de envio, usamos event.preventDefault();. O objetivo é prevenir que o formulário siga seu comportamento padrão, que é enviar os dados e recarregar a página. Como queremos adicionar a tarefa sem recarregar a página, essa etapa é crucial.
+
+Obtendo o valor da entrada de tarefa:
+Usamos $("#taskInput").val() para pegar o valor que o usuário digitou no campo de entrada de tarefa. Esse valor representa o nome da tarefa que o usuário deseja adicionar.
+
+Verificando se a entrada não está vazia:
+Antes de adicionar a tarefa, é importante verificar se o usuário não enviou uma string vazia. Uma condição simples verifica isso. Se a entrada estiver vazia, o código não avança para evitar a adição de tarefas vazias.
+
+Criando o item da lista (li) e adicionando à lista:
+Se a entrada contiver um valor, usamos jQuery para criar um novo elemento li e definimos seu texto para o valor da tarefa. A seguir, esse item é adicionado à lista UL usando $("#taskList").append().
+
+Ouvinte de clique para o item da lista:
+Dentro da mesma função de envio, configuramos um ouvinte de evento de clique para o item da lista recém-criado. Isso permite que os usuários marquem a tarefa como concluída ao clicar nela. Ao ser clicado, o item da lista terá a classe .completed adicionada (ou removida, se já estiver aplicada). Esta classe aplica um efeito de linha cruzada, indicando que a tarefa foi concluída.
+
+Limpando a entrada de tarefa:
+Após adicionar a tarefa à lista, é uma boa prática limpar a caixa de entrada para que o usuário possa inserir uma nova tarefa. Usamos $("#taskInput").val(''); para definir o valor da entrada como uma string vazia, efetivamente limpando-a.
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+Definição do Problema:
+O primeiro passo na criação de qualquer solução é entender claramente o problema. No nosso caso, queríamos uma aplicação onde os usuários pudessem adicionar tarefas, ver uma lista dessas tarefas e marcar tarefas como concluídas.
+
+Inicialização:
+
+Antes de manipular elementos em uma página web, é essencial garantir que toda a página tenha sido completamente carregada. Esse é o motivo pelo qual começamos com $(document).ready().
+Sem esperar que a página esteja pronta, tentar acessar um elemento pode resultar em erros ou comportamento inesperado.
+Manipulação de Eventos:
+
+Em aplicações interativas, grande parte da lógica é impulsionada por eventos, como cliques ou envios de formulário. No nosso caso, o evento mais significativo é o envio do formulário.
+$("#taskForm").submit() é usado para detectar quando o formulário é enviado. Isso é preferível a um simples clique no botão, pois leva em consideração outros métodos de envio, como pressionar "Enter".
+Prevenção de Comportamentos Padrão:
+
+Formulários, por padrão, tentarão enviar dados para algum servidor e recarregar a página. Para uma experiência de usuário suave e uma aplicação de página única, essa ação padrão é geralmente impedida, daí o event.preventDefault();.
+Manipulação de Dados:
+
+Uma vez que o evento seja detectado, queremos fazer algo com os dados fornecidos pelo usuário, neste caso, o nome da tarefa. $("#taskInput").val() nos dá esse valor.
+Uma verificação subsequente para garantir que o valor não está vazio previne entradas indesejadas.
+Atualização da Interface do Usuário (UI):
+
+Com base nos dados, a UI é atualizada. Aqui, uma nova tarefa é adicionada à lista.
+Este é um padrão comum em desenvolvimento: obtenha dados, processe-os e depois atualize a UI.
+Interatividade Adicional:
+
+Além de adicionar tarefas, queríamos permitir que os usuários marcassem tarefas como concluídas. Esta é outra camada de interatividade.
+Detectar cliques em itens da lista e adicionar/remover uma classe CSS é a solução adotada.
+Finalização e Preparação para a Próxima Entrada:
+
+Limpar a entrada após o uso é uma maneira de preparar a aplicação para a próxima ação do usuário, mantendo a experiência fluida.
+Ao entender o problema e desmembrá-lo em etapas lógicas, o desenvolvimento se torna uma questão de implementar cada etapa, muitas vezes na ordem que as etapas ocorrem. Este é um padrão comum na programação: entender, dividir em etapas, implementar e iterar.
+
